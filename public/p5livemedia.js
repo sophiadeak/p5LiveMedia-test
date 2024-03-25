@@ -107,7 +107,7 @@ class p5LiveMedia {
             console.log("Socket Connected");
             console.log("My socket id: ", this.socket.id);
 
-            //console.log("***"+window.location.href);
+            console.log("***"+window.location.href);
 
             // Sends back a list of users in the room
             if (!room) {
@@ -124,7 +124,7 @@ class p5LiveMedia {
         });
 
         this.socket.on('peer_disconnect', (data) => {
-            //console.log("simplepeer has disconnected " + data);
+            console.log("simplepeer has disconnected " + data);
             for (let i = 0; i < this.simplepeers.length; i++) {
                 if (this.simplepeers[i].socket_id == data) {
                     //console.log("Removed the DOM Element if it exits");
@@ -139,7 +139,7 @@ class p5LiveMedia {
 
         // Receive listresults from server
         this.socket.on('listresults', (data) => {
-            //console.log(data);
+            console.log("LIST RESULTS", data);
             for (let i = 0; i < data.length; i++) {
                 // Make sure it's not us
                 if (data[i] != this.socket.id) {	
@@ -157,7 +157,7 @@ class p5LiveMedia {
             
         this.socket.on('signal', (to, from, data) => {
 
-            //console.log("Got a signal from the server: ", to, from, data);
+            console.log("Got a signal from the server: ", to, from, data);
 
             // // to should be us
             // if (to != this.socket.id) {
@@ -179,7 +179,7 @@ class p5LiveMedia {
             
             }	
             if (!found) {
-                //console.log("Never found right simplepeer object");
+                console.log("Never found right simplepeer object");
                 // Let's create it then, we won't be the "initiator"
                 let simplepeer = new SimplePeerWrapper(this,
                     false, from, this.socket, this.mystream, this.videoBitrate, this.audioBitrate
@@ -196,6 +196,7 @@ class p5LiveMedia {
 
     // Add a stream
     addStream(elem, type) {
+        console.log("DOING ADD STREAM");
         let goodStream = false;
         if (type == "CANVAS") {
             this.mystream = elem.elt.captureStream(30);
@@ -372,8 +373,8 @@ class SimplePeerWrapper {
 
         // When we have a connection, send our stream
         this.simplepeer.on('connect', () => {
-            //console.log('simplepeer connection')
-            //console.log(this.simplepeer);
+            console.log('simplepeer connection')
+            console.log(this.simplepeer);
             //p.send('whatever' + Math.random())
 
             // We are connected
@@ -431,7 +432,7 @@ class SimplePeerWrapper {
         if (this.connected) {
             this.simplepeer.send(data);
         } else {
-            //console.log("Can't send, not connected");
+            console.log("Can't send, not connected");
         }
     }
 
