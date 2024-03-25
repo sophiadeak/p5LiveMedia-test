@@ -145,6 +145,7 @@ class p5LiveMedia {
                 if (data[i] != this.socket.id) {	
 
                     // create a new simplepeer and we'll be the "initiator"			
+                    console.log("creating simple peer");
                     let simplepeer = new SimplePeerWrapper(this,
                         true, data[i], this.socket, this.mystream, this.videoBitrate, this.audioBitrate
                     );
