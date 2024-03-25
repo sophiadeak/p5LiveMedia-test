@@ -104,8 +104,8 @@ class p5LiveMedia {
         }
 
         this.socket.on('connect', () => {
-            //console.log("Socket Connected");
-            //console.log("My socket id: ", this.socket.id);
+            console.log("Socket Connected");
+            console.log("My socket id: ", this.socket.id);
 
             //console.log("***"+window.location.href);
 
@@ -233,6 +233,7 @@ class p5LiveMedia {
     }
 
     on(event, callback) {
+        console.log("REACHED THE ON");
         if (event == 'stream') {
             this.onStream(callback);
         } else if (event == 'data') {
@@ -387,7 +388,7 @@ class SimplePeerWrapper {
 
         // Stream coming in to us
         this.simplepeer.on('stream', stream => {
-            //console.log('Incoming Stream');
+            console.log('Incoming Stream in simplepeer');
 
             // This should really be a callback
 
